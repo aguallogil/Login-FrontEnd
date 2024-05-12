@@ -5,6 +5,7 @@ Este proyecto ha sido desarrollado utilizando la última versión de Angular y e
 ### Prerrequisitos
 
 Asegúrate de tener Node.js y npm instalados en tu máquina. Puedes verificar tus versiones con: `node --version y npm --version`
+Ademas debera cambiar el puerto de la Api si asi lo requiere en el archivo `environment.ts`.
 
 ## Development server
 
