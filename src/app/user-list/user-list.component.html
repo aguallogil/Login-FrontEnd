@@ -1,0 +1,44 @@
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <!-- Botón para agregar un nuevo registro -->
+    <div class="flex justify-between items-center mb-4 px-6">
+        <h2 class="text-lg font-bold text-gray-800">Usuarios</h2>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="nuevo()">
+            Nuevo
+        </button>
+    </div>
+    <div class="overflow-x-auto">
+
+
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="py-3 px-6">ID</th>
+                    <th scope="col" class="py-3 px-6">Email</th>
+                    <th scope="col" class="py-3 px-6">Nombre de usuario</th>
+                    <th scope="col" class="py-3 px-6">Estado</th>
+                    <th scope="col" class="py-3 px-6">Fecha de Creación</th>
+                    <th scope="col" class="py-3 px-6">Sexo</th>
+                    <th scope="col" class="py-3 px-6">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b hover:bg-gray-50" *ngFor="let user of users()">
+                    <td class="py-4 px-6">{{ user.id }}</td>
+                    <td class="py-4 px-6">{{ user.email }}</td>
+                    <td class="py-4 px-6">{{ user.userName }}</td>
+                    <td class="py-4 px-6">{{ user.isActive ? 'Activo' : 'Inactivo' }}</td>
+                    <td class="py-4 px-6">{{ user.createdDate | date }}</td>
+                    <td class="py-4 px-6">{{ user.sexo |genderPipe}}</td>
+                    <td class="py-4 px-6">
+                        <button class="font-medium text-blue-600 hover:underline"
+                            (click)="edit(user.id||0)">Editar</button>&nbsp;
+                        @if(user.isActive){
+                        <button class="font-medium text-blue-600 hover:underline"
+                            (click)="delete(user.id||0)">Eliminar</button>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

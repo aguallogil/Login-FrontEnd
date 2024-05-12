@@ -1,0 +1,74 @@
+<div class="flex justify-center items-center h-[600px]">
+  <form [formGroup]="form" class="w-full max-w-lg p-4 border border-gray-300 rounded-lg shadow-lg"
+    (submit)="onSubmit()">
+    <h2 class="text-lg font-bold text-center text-gray-800 mb-6">{{title()}}</h2>
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico:</label>
+      <input type="email" id="email" formControlName="email"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <div *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched"
+        class="text-red-500 text-xs italic">El correo electrónico es obligatorio.</div>
+      <div *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+        class="text-red-500 text-xs italic">El formato del correo electrónico no es válido.</div>
+    </div>
+    <div class="mb-4">
+      <label for="userName" class="block text-gray-700 text-sm font-bold mb-2">Nombre de Usuario:</label>
+      <input type="text" id="userName" formControlName="userName"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <div *ngIf="form.get('userName')?.errors?.['required'] && form.get('userName')?.touched"
+        class="text-red-500 text-xs italic">El nombre de usuario es obligatorio.</div>
+      <div *ngIf="form.get('userName')?.errors?.['minlength'] && form.get('userName')?.touched"
+        class="text-red-500 text-xs italic">El nombre de usuario debe tener al menos 7 caracteres.</div>
+    </div>
+    <div class="mb-6">
+      <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
+      <input type="password" id="password" formControlName="password"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <div *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched"
+        class="text-red-500 text-xs italic">La contraseña es obligatoria.</div>
+      <div *ngIf="form.get('password')?.errors?.['pattern'] && form.get('password')?.touched"
+        class="text-red-500 text-xs italic">La contraseña debe tener al menos 10 caracteres y contener al menos una
+        mayúscula, una minúscula, un número y un símbolo.</div>
+    </div>
+    <div class="mb-6">
+      <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Contraseña:</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <div *ngIf="form.get('confirmPassword')?.touched">
+        <div *ngIf="form.get('confirmPassword')?.errors?.['required']" class="text-red-500 text-xs italic">Confirmar la
+          contraseña es obligatorio.</div>
+        <div *ngIf="form.get('confirmPassword')?.errors?.['mustMatch']" class="text-red-500 text-xs italic">Las
+          contraseñas no coinciden.</div>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <label for="sexo" class="block text-gray-700 text-sm font-bold mb-2">Sexo:</label>
+      <select id="sexo" formControlName="sexo"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="" disabled>Seleccione</option>
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
+      <div *ngIf="form.get('sexo')?.touched && form.get('sexo')?.errors">
+        <div *ngIf="form.get('sexo')?.errors?.['required']" class="text-red-500 text-xs italic">
+          La selección de sexo es obligatoria.
+        </div>
+      </div>
+    </div>
+    @if(id!='new'){
+      <div class="mb-4">
+        <label for="isActive" class="flex items-center">
+          <input type="checkbox" id="isActive" formControlName="isActive"
+            class="form-checkbox h-5 w-5 text-blue-600">
+          <span class="ml-2 text-gray-700 text-sm">Activo</span>
+        </label>
+      </div>   
+    } 
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit">Enviar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="flex justify-center items-center h-[600px]">
+    <form [formGroup]="form" class="w-full max-w-lg p-4 border border-gray-300 rounded-lg shadow-lg" (ngSubmit)="onLogin()">
+      <h2 class="text-lg font-bold text-center text-gray-800 mb-6">Iniciar sesión</h2>
+      <div class="mb-4">
+        <label for="userName" class="block text-gray-700 text-sm font-bold mb-2">Nombre de usuario:</label>
+        <input type="text" id="userName" formControlName="userName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <div *ngIf="form.get('userName')?.touched">
+            <div *ngIf="form.get('userName')?.errors?.['required']" class="text-red-500 text-xs italic">
+              El nombre de usuario es obligatorio.
+            </div>
+            <div *ngIf="form.get('userName')?.errors?.['minlength']" class="text-red-500 text-xs italic">
+              El nombre de usuario debe tener al menos {{ form.get('userName')?.errors?.['minlength'].requiredLength }} caracteres.
+            </div>
+            <div *ngIf="form.get('userName')?.errors?.['maxlength']" class="text-red-500 text-xs italic">
+              El nombre de usuario no puede tener más de {{ form.get('userName')?.errors?.['maxlength'].requiredLength }} caracteres.
+            </div>
+            <div *ngIf="form.get('userName')?.errors?.['pattern']" class="text-red-500 text-xs italic">
+              El nombre de usuario debe ser alfanumérico.
+            </div>
+          </div>
+          
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
+        <input type="password" id="password" formControlName="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Iniciar sesión</button>
+        <h2><a class="cursor-pointer" (click)="navigateToRegister()" style="text-decoration: none; color: blue;">Registrarse</a></h2>
+      </div>
+    </form>
+  </div>
+  
